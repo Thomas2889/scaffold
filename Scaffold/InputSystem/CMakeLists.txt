@@ -21,6 +21,9 @@ target_link_libraries(InputSystem
 	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
 	)
 
+	
+target_link_libraries (InputSystem PRIVATE Core)
+
 
 if(${CMAKE_OS_NAME} STREQUAL "Windows")
 	execute_process(COMMAND
