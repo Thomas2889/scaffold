@@ -1,0 +1,5 @@
+#undef main
+void main()
+{
+
+}

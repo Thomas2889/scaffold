@@ -1,0 +1,5 @@
+/Scaffold/##out/
+/Scaffold/#wd/log.txt
+
+/Scaffold/.vs/*
+!/Scaffold/.vs/launch.vs.json
