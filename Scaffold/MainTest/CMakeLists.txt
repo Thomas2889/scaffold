@@ -15,6 +15,9 @@ target_link_libraries(MainTest
 	)
 
 
+target_link_libraries (MainTest PRIVATE InputSystem)
+
+
 if(${CMAKE_OS_NAME} STREQUAL "Windows")
 	add_custom_command(
 		TARGET MainTest
