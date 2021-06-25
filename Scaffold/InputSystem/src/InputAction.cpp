@@ -3,8 +3,8 @@
 #include <numeric>
 #include <glm/gtx/norm.hpp>
 
-#include "src/Core/Utils/StringUtils.h"
-#include "src/Core/Exceptions/GenericExceptions.h"
+#include "Core/StringUtils.h"
+#include "Core/Exceptions.h"
 
 
 namespace scaffold::input

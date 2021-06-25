@@ -15,6 +15,7 @@ target_link_libraries(MainTest
 	)
 
 
+target_link_libraries (MainTest PRIVATE Core)
 target_link_libraries (MainTest PRIVATE InputSystem)
 
 
