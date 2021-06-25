@@ -5,7 +5,7 @@
 #include "InputDrivers.h"
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	std::unordered_set<InputDevice*> InputDevice::devices;
 	InputDevice::InputDevice(InputDevice&& _o)

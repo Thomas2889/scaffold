@@ -7,7 +7,7 @@
 #include "src/Core/Exceptions/GenericExceptions.h"
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	void SwapData(InputAction& _l, InputAction& _r)
 	{

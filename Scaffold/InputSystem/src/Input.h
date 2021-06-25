@@ -6,7 +6,7 @@
 #include "InputAction.h"
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	class InputAction;
 	namespace intern

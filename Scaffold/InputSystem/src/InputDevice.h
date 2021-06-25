@@ -8,7 +8,7 @@
 #include <CppLog/Logger.h>
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	class InputDriver;
 	namespace intern

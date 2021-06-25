@@ -11,7 +11,7 @@
 #include "InputDevice.h"
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	class InputDevice;
 

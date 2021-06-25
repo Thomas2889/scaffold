@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	class InputEntry
 	{

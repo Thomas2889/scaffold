@@ -1,7 +1,7 @@
 #include "InputDrivers.h"
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	std::string InputDriver::TypeToStr(Type _type)
 	{

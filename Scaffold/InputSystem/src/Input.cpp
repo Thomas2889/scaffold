@@ -5,7 +5,7 @@
 #include <glm/glm.hpp>
 
 
-namespace powd::input
+namespace scaffold::input
 {
 	std::unordered_map<std::string, InputDevice*> intern::devices;
 	std::unordered_map<std::string, InputAction*> inputActions;
