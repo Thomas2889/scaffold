@@ -16,4 +16,5 @@ file(MAKE_DIRECTORY "#wd")
 endif()
 
 
+add_subdirectory ("Core")
 add_subdirectory ("MainTest")
