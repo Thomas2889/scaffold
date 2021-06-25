@@ -22,7 +22,7 @@ if(${CMAKE_OS_NAME} STREQUAL "Windows")
 	execute_process(COMMAND
 		cmd /c call "${CMAKE_CURRENT_SOURCE_DIR}/#buildsteps/CopyHeaders.bat"
 			"${CMAKE_CURRENT_SOURCE_DIR}/src"
-			"${CMAKE_BINARY_DIR}/#Headers/InputSystem"
+			"${CMAKE_BINARY_DIR}/#Headers/Core"
 		WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 
 		RESULT_VARIABLE result
