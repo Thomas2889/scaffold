@@ -26,7 +26,7 @@ if(${CMAKE_OS_NAME} STREQUAL "Windows")
 		COMMAND call "${CMAKE_CURRENT_SOURCE_DIR}/#buildsteps/CopyBinaries.bat"
 					"${CMAKE_CURRENT_SOURCE_DIR}/#in/Bin/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}"
 					"${CMAKE_CURRENT_BINARY_DIR}"
-					"${DYNAMIC_LIB_EXT}"
+					"dll"
 		COMMENT "Adds dynamic libraries to the same folder as the exe"
 		VERBATIM
 	)
@@ -36,7 +36,7 @@ if(${CMAKE_OS_NAME} STREQUAL "Windows")
 		COMMAND call "${CMAKE_CURRENT_SOURCE_DIR}/#buildsteps/CopyBinaries.bat"
 					"${CMAKE_SOURCE_DIR}/#in/Bin/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}"
 					"${CMAKE_CURRENT_BINARY_DIR}"
-					"${DYNAMIC_LIB_EXT}"
+					"dll"
 		COMMENT "Adds dynamic libraries to the same folder as the exe"
 		VERBATIM
 	)

@@ -69,9 +69,10 @@ namespace scaffold::input
 	}
 
 
-	void CreateAction(std::string name, std::string binding)
+	InputAction& CreateAction(std::string name, std::string binding)
 	{
 		inputActions[name] = new InputAction(binding);
+		return *inputActions[name];
 	}
 	void DeleteAction(std::string name)
 	{

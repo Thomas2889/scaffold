@@ -27,7 +27,7 @@ namespace scaffold::input
 	private:
 		Data data;
 		std::unordered_map<std::string, InputDriver*> drivers;
-		InputDriver* leadDriver;
+		InputDriver* leadDriver = nullptr;
 		std::vector<InputEntry*> processors;
 		entt::sigh<void(InputAction*)> onValueChangeSign;
 
