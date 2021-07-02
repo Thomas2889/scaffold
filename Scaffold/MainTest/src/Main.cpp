@@ -1,14 +1,17 @@
 #include "InputSystem/Input.h"
+#include "Window/WindowManager.h"
 
 #include <thread>
 
 
+using namespace scaffold;
+
+
 bool running = true;
 
-void TestInput(scaffold::input::InputAction* action)
+void WindowShutdown()
 {
-	if (action->GetData<bool>() == true)
-		cpplog::Logger::Log("Did input!", cpplog::Logger::DEBUG);
+	running = false;
 }
 
 #undef main
@@ -16,58 +19,25 @@ void main()
 {
 	new cpplog::Logger("log.txt", "Main", 4);
 
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
+	window::StartSDL();
+	window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &WindowShutdown);
 
-	SDL_Window* window = SDL_CreateWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 450, SDL_WINDOW_RESIZABLE);
+	input::AddDevice<input::InputDevice_Keyboard, std::string>("keyboard", "keyboard");
+	input::AddDevice<input::InputDevice_Mouse, std::string>("mouse", "mouse");
 
-	scaffold::input::AddDevice<scaffold::input::InputDevice_Keyboard, std::string>("keyboard", "keyboard");
-	scaffold::input::AddDevice<scaffold::input::InputDevice_Mouse, std::string>("mouse", "mouse");
-
-	scaffold::input::CreateAction("TestInput", "keyboard/W").onValueChange.connect<&TestInput>();
 
 	while (running)
 	{
-		SDL_PumpEvents();
-
-		scaffold::input::intern::InputEntry::PreUpdate();
-
-		SDL_Event e;
-		int currentEvents = 0;
-		const int maxEvents = 50;
-		while (SDL_PollEvent(&e) && currentEvents < maxEvents) // poll events
-		{
-			currentEvents++;
-
-			if (e.type == SDL_WINDOWEVENT)
-			{
-				switch (e.window.event)
-				{
-				case SDL_WINDOWEVENT_CLOSE:
-					running = false;
-					break;
-				}
-			}
-			else
-			{
-				switch (e.type)
-				{
-				case SDL_KEYUP:
-				case SDL_KEYDOWN:
-				case SDL_MOUSEMOTION:
-				case SDL_MOUSEBUTTONUP:
-				case SDL_MOUSEBUTTONDOWN:
-				case SDL_MOUSEWHEEL:
-					scaffold::input::intern::InputEntry::ProcessEvent(e);
-					break;
-				}
-			}
-		}
-
-		scaffold::input::intern::InputEntry::PostUpdate();
-
+		window::FlushEvents();
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
+
+
+	input::ClearActions();
+	input::ClearDevices();
+
+	window::Shutdown();
 
 	cpplog::Logger::Destruct();
 }
