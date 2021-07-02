@@ -40,7 +40,7 @@ namespace scaffold::input
 	template<typename T>
 	T GetInput(std::string inputName);
 
-	InputAction& CreateAction(std::string name, std::string binding);
+	InputAction* CreateAction(std::string name, std::string binding);
 	void DeleteAction(std::string name);
 	InputAction* GetAction(std::string name);
 	void ClearActions();
