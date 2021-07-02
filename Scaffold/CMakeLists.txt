@@ -18,4 +18,5 @@ endif()
 
 add_subdirectory ("Core")
 add_subdirectory ("InputSystem")
+add_subdirectory ("Window")
 add_subdirectory ("MainTest")
