@@ -3,7 +3,7 @@
  add_library (
  	Core
 	"src/StringUtils.cpp"
-)
+	"src/ArgProcessor.cpp")
 
 
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Include")
