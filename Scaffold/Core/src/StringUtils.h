@@ -11,4 +11,7 @@ namespace scaffold::utils::string
 	std::vector<std::string> SplitByDelimiter(std::string str, const std::string& delim);
 
 	std::string RemoveTrailing(std::string str, const std::string& delim = " ");
+
+	std::string ToLower(std::string str);
+	std::string ToUpper(std::string str);
 }

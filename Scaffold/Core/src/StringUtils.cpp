@@ -41,4 +41,18 @@ namespace scaffold::utils::string
 
 		return str;
 	}
+
+
+	std::string ToLower(std::string str)
+	{
+		for (int i = 0; i < str.size(); i++)
+			str[i] = std::tolower(str[i]);
+		return str;
+	}
+	std::string ToUpper(std::string str)
+	{
+		for (int i = 0; i < str.size(); i++)
+			str[i] = std::toupper(str[i]);
+		return str;
+	}
 }
