@@ -18,7 +18,9 @@
 	"src/Utils/StringUtils.cpp"
 	"src/Utils/ArgProcessor.cpp"
 	"src/Utils/Math.cpp"
-	"src/Debugging/CPUProfiler.cpp")
+	"src/Debugging/CPUProfiler.cpp"
+	
+	"src/Scaffold.cpp")
 
 	
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
