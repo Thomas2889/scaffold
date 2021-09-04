@@ -1,6 +1,9 @@
-#include "InputSystem/Input.h"
-#include "Window/WindowManager.h"
-#include "Core/ArgProcessor.h"
+#include "Core/InputSystem/Input.h"
+#include "Core/Window/WindowManager.h"
+#include "Core/Utils/ArgProcessor.h"
+#include "Core/Ecs/SystemProto.h"
+#include "Core/Dispatching/Dispatching.h"
+#include "Core/Debugging/CPUProfiler.h"
 
 #include <thread>
 
@@ -8,12 +11,15 @@
 using namespace scaffold;
 
 
-bool running = true;
-
-void WindowShutdown()
+class TestSystem : public ecs::SystemProto
 {
-	running = false;
-}
+	DEFINE_SYSTEM_PROTO(TestSystem);
+		
+public:
+
+};
+IMPLEMENT_SYSTEM_PROTO(TestSystem);
+
 
 #undef main
 void main(int argc, char* argv[])
@@ -24,19 +30,16 @@ void main(int argc, char* argv[])
 	new cpplog::Logger("log.txt", "Main", arg::GetKwarg<int>("--DebugLevel", 0));
 
 	window::StartSDL();
-	window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &WindowShutdown);
+	window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &dispatch::StopCoreLoop);
 
 	input::AddDevice<input::InputDevice_Keyboard, std::string>("keyboard", "keyboard");
 	input::AddDevice<input::InputDevice_Mouse, std::string>("mouse", "mouse");
 
 
-	while (running)
-	{
-		window::FlushEvents();
+	dispatch::CoreLoop();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(5));
-	}
 
+	ecs::SystemProto::Cleanup();
 
 	input::ClearActions();
 	input::ClearDevices();

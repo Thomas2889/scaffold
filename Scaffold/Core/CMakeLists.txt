@@ -2,10 +2,26 @@
 
  add_library (
  	Core
-	"src/StringUtils.cpp"
-	"src/ArgProcessor.cpp")
+	"src/Dispatching/Dispatching.cpp"
+	
+	"src/Ecs/EntityRegistry.cpp"
+	"src/Ecs/SystemProto.cpp"
+	
+	"src/InputSystem/Input.cpp"
+	"src/InputSystem/InputAction.cpp"
+	"src/InputSystem/InputDevice.cpp"
+	"src/InputSystem/InputDrivers.cpp"
+	
+	"src/Window/Window.cpp"
+	"src/Window/WindowManager.cpp"
 
+	"src/Utils/StringUtils.cpp"
+	"src/Utils/ArgProcessor.cpp"
+	"src/Utils/Math.cpp"
+	"src/Debugging/CPUProfiler.cpp")
 
+	
+target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Include")
 target_include_directories (Core PRIVATE "${CMAKE_SOURCE_DIR}/#in/Include")
 
