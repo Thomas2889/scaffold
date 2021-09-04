@@ -6,6 +6,8 @@
 #include "Ecs/SystemProto.h"
 #include "Dispatching/Dispatching.h"
 
+#include <SDL2/SDL_vulkan.h>
+
 
 namespace scaffold
 {
@@ -17,7 +19,7 @@ namespace scaffold
 		new cpplog::Logger("log.txt", "Main", arg::GetKwarg<int>("--DebugLevel", 0));
 
 		window::StartSDL();
-		window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &dispatch::StopCoreLoop);
+		window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_VULKAN, &dispatch::StopCoreLoop);
 
 		input::AddDevice<input::InputDevice_Keyboard, std::string>("keyboard", "keyboard");
 		input::AddDevice<input::InputDevice_Mouse, std::string>("mouse", "mouse");
