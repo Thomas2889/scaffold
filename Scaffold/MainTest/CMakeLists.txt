@@ -15,8 +15,6 @@ target_link_libraries(MainTest
 
 
 target_link_libraries (MainTest PRIVATE Core)
-target_link_libraries (MainTest PRIVATE InputSystem)
-target_link_libraries (MainTest PRIVATE Window)
 
 
 if(${CMAKE_OS_NAME} STREQUAL "Windows")
