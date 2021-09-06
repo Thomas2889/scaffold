@@ -70,15 +70,14 @@ namespace scaffold::ecs
 
 					if (refPriority == priority)
 						break;
-
-					if (refPriority < priority)
+					else if (refPriority < priority)
 					{
 						if (i == 0 || (*systemList)[i - 1]->priority >= priority)
 							break;
 						righti = i;
-						i = righti - floor((righti - lefti) / 2);
+						i = righti - ceil((righti - lefti) / 2.f);
 					}
-					else if (refPriority > priority)
+					else
 					{
 						if (i == systemList->size() - 1 || (*systemList)[i + 1]->priority <= priority)
 						{
@@ -86,7 +85,7 @@ namespace scaffold::ecs
 							break;
 						}
 						lefti = i;
-						i = lefti + floor((righti - lefti) / 2);
+						i = lefti + ceil((righti - lefti) / 2.f);
 					}
 				}
 				systemList->insert(systemList->begin() + i, _p);
