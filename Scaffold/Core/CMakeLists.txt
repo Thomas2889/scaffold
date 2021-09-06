@@ -23,7 +23,7 @@
 	"Core/Scaffold.cpp")
 
 	
-target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Core")
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Include")
 target_include_directories (Core PRIVATE "${CMAKE_SOURCE_DIR}/#in/Include")
 
