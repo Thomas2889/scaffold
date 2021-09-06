@@ -2,6 +2,7 @@
 
 add_executable (MainTest "MainTest/Main.cpp")
 
+target_include_directories (MainTest PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/MainTest")
 target_include_directories (MainTest PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Include")
 target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/#in/Include")
 
@@ -15,8 +16,6 @@ target_link_libraries(MainTest
 
 target_link_libraries (MainTest PRIVATE Core)
 target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Core")
-target_link_libraries (MainTest PRIVATE Renderer)
-target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Renderer")
 
 
 if(${CMAKE_OS_NAME} STREQUAL "Windows")
