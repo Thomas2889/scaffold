@@ -6,7 +6,7 @@
 #include <cstdint>
 
 #include "Utils/Math.h"
-#include "Ecs/SystemProtoFunctions.h"
+#include "Ecs/SystemProto.h"
 #include "Window/WindowManager.h"
 #include "Debugging/CPUProfiler.h"
 
@@ -66,7 +66,7 @@ namespace scaffold::dispatch
 
 		const std::chrono::milliseconds roughness(2); // thread waiting isn't precise and therefor we need some roughness to our time
 
-		ecs::system::RunSystems_Start();
+		ecs::SystemProto::RunStart();
 		while (running)
 		{
 			profiling::intern::StartFrame();
@@ -87,9 +87,9 @@ namespace scaffold::dispatch
 				profiling::StartSectionProfile("Tick Loop");
 				while (currentTime >= timepoints.tick - roughness)
 				{
-					ecs::system::RunSystems_PreTick(1.f / tickFrequency);
-					ecs::system::RunSystems_Tick(1.f / tickFrequency);
-					ecs::system::RunSystems_PostTick(1.f / tickFrequency);
+					ecs::SystemProto::RunPreTick(1.f / tickFrequency);
+					ecs::SystemProto::RunTick(1.f / tickFrequency);
+					ecs::SystemProto::RunPostTick(1.f / tickFrequency);
 
 					timepoints.tick += std::chrono::nanoseconds(1000000000 / tickFrequency);
 				}
@@ -101,9 +101,9 @@ namespace scaffold::dispatch
 				profiling::StartSectionProfile("Render Loop");
 				dt = GetDeltaTime(currentTime, timepoints.renderLast);
 
-				ecs::system::RunSystems_PreRender(dt);
-				ecs::system::RunSystems_Render(dt);
-				ecs::system::RunSystems_PostRender(dt);
+				ecs::SystemProto::RunPreRender(dt);
+				ecs::SystemProto::RunRender(dt);
+				ecs::SystemProto::RunPostRender(dt);
 
 				timepoints.renderLast = currentTime;
 				timepoints.render = currentTime + std::chrono::nanoseconds(1000000000 / renderFrequency);
@@ -121,6 +121,6 @@ namespace scaffold::dispatch
 
 			profiling::StopSectionProfile(); // end of frame
 		}
-		ecs::system::RunSystems_End();
+		ecs::SystemProto::RunEnd();
 	}
 }

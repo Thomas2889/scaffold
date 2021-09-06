@@ -2,25 +2,25 @@
 
  add_library (
  	Core
-	"src/Dispatching/Dispatching.cpp"
+	"Core/Dispatching/Dispatching.cpp"
 	
-	"src/Ecs/EntityRegistry.cpp"
-	"src/Ecs/SystemProto.cpp"
+	"Core/Ecs/EntityRegistry.cpp"
+	"Core/Ecs/SystemProto.cpp"
 	
-	"src/InputSystem/Input.cpp"
-	"src/InputSystem/InputAction.cpp"
-	"src/InputSystem/InputDevice.cpp"
-	"src/InputSystem/InputDrivers.cpp"
+	"Core/InputSystem/Input.cpp"
+	"Core/InputSystem/InputAction.cpp"
+	"Core/InputSystem/InputDevice.cpp"
+	"Core/InputSystem/InputDrivers.cpp"
 	
-	"src/Window/Window.cpp"
-	"src/Window/WindowManager.cpp"
+	"Core/Window/Window.cpp"
+	"Core/Window/WindowManager.cpp"
 
-	"src/Utils/StringUtils.cpp"
-	"src/Utils/ArgProcessor.cpp"
-	"src/Utils/Math.cpp"
-	"src/Debugging/CPUProfiler.cpp"
+	"Core/Utils/StringUtils.cpp"
+	"Core/Utils/ArgProcessor.cpp"
+	"Core/Utils/Math.cpp"
+	"Core/Debugging/CPUProfiler.cpp"
 	
-	"src/Scaffold.cpp")
+	"Core/Scaffold.cpp")
 
 	
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
