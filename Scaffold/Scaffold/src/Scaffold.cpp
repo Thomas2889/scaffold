@@ -17,10 +17,13 @@ namespace scaffold
 		new cpplog::Logger("log.txt", "Main", arg::GetKwarg<int>("--DebugLevel", 0));
 
 		window::StartSDL();
-		window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN, &dispatch::StopCoreLoop);
+		window::mainWindow = window::StartWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
+		window::GetInstance(window::mainWindow)->onClose.connect<&dispatch::StopCoreLoop>();
 
 		input::AddDevice<input::InputDevice_Keyboard, std::string>("keyboard", "keyboard");
 		input::AddDevice<input::InputDevice_Mouse, std::string>("mouse", "mouse");
+		input::keyboard = input::GetDevice("keyboard");
+		input::mouse = input::GetDevice("mouse");
 
 
 		dispatch::CoreLoop();

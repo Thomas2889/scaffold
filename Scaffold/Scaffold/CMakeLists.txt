@@ -10,15 +10,11 @@ target_include_directories (Scaffold PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/In
 target_include_directories (Scaffold PRIVATE "${CMAKE_SOURCE_DIR}/#in/Include")
 
 target_link_libraries(Scaffold
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/CppLog.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2main.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
 	)
 
 	
-target_link_libraries (Scaffold PRIVATE Core)
-target_include_directories (Scaffold PRIVATE "${CMAKE_SOURCE_DIR}/Core")
+target_link_libraries (Scaffold PUBLIC Core)
+target_include_directories (Scaffold PUBLIC "${CMAKE_SOURCE_DIR}/Core")
 
 
 if(${CMAKE_OS_NAME} STREQUAL "Windows")

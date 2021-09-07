@@ -18,9 +18,7 @@
 	"Core/Utils/StringUtils.cpp"
 	"Core/Utils/ArgProcessor.cpp"
 	"Core/Utils/Math.cpp"
-	"Core/Debugging/CPUProfiler.cpp"
-	
-	"Core/Scaffold.cpp")
+	"Core/Debugging/CPUProfiler.cpp")
 
 set_target_properties(Core PROPERTIES PREFIX "scaffold-")
 
@@ -30,10 +28,10 @@ target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Includ
 target_include_directories (Core PRIVATE "${CMAKE_SOURCE_DIR}/#in/Include")
 
 target_link_libraries(Core
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/CppLog.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2main.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
+	PUBLIC "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/CppLog.lib"
+	PUBLIC "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2.lib"
+	PUBLIC "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2main.lib"
+	PUBLIC "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
 	)
 
 

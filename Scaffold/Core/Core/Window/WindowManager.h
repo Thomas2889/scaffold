@@ -27,8 +27,7 @@ namespace scaffold::window
 		uint32_t _windowYPos = 0,
 		uint32_t _windowWidth = 0,
 		uint32_t _windowHeight = 0,
-		uint32_t _windowFlags = 0,
-		void(*_windowClosedCallback)() = {}
+		uint32_t _windowFlags = 0
 	);
 
 	/// <summary>

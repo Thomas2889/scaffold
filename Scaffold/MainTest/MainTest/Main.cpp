@@ -1,5 +1,6 @@
-#include "Core/Scaffold.h"
-#include "Core/Ecs/SystemProto.h"
+#include <Scaffold.h>
+#include <Core/Ecs/SystemProto.h>
+#include <Core/InputSystem/Input.h>
 
 #include <thread>
 

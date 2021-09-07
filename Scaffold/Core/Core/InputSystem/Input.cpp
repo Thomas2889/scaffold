@@ -10,6 +10,9 @@ namespace scaffold::input
 	std::unordered_map<std::string, InputDevice*> intern::devices;
 	std::unordered_map<std::string, InputAction*> inputActions;
 
+	InputDevice* keyboard;
+	InputDevice* mouse;
+
 
 	InputDevice* GetDevice(std::string name)
 	{

@@ -38,8 +38,7 @@ namespace scaffold::window
 		uint32_t _windowYPos,
 		uint32_t _windowWidth,
 		uint32_t _windowHeight,
-		uint32_t _windowFlags,
-		void(*_windowClosedCallback)()
+		uint32_t _windowFlags
 	)
 	{
  		std::lock_guard<std::mutex>lck(mut);
@@ -50,7 +49,7 @@ namespace scaffold::window
 			StartSDL();
 		}
 
-		Window* window = new Window(_windowTitle, _windowXPos, _windowYPos, _windowWidth, _windowHeight, _windowFlags, _windowClosedCallback);
+		Window* window = new Window(_windowTitle, _windowXPos, _windowYPos, _windowWidth, _windowHeight, _windowFlags);
 		instanceMap[window->GetID()] = window;
 		return window->GetID();
 	}
@@ -114,8 +113,10 @@ namespace scaffold::window
 				bool closed = false;
 				switch (e.window.event)
 				{
-				case SDL_WINDOWEVENT_RESIZED:
+				case SDL_WINDOWEVENT_SIZE_CHANGED:
 					relevantWindow->SetWidthAndHeightInternal(e.window.data1, e.window.data2);
+					
+					relevantWindow->signalResize.publish(e.window.data1, e.window.data2);
 					break;
 
 				case SDL_WINDOWEVENT_MINIMIZED:
@@ -127,7 +128,8 @@ namespace scaffold::window
 					break;
 
 				case SDL_WINDOWEVENT_CLOSE:
-					relevantWindow->closedCallback();
+					relevantWindow->signalClose.publish();
+
 					delete instanceMap[e.window.windowID];
 					instanceMap.erase(e.window.windowID);
 					closed = true;
@@ -135,12 +137,7 @@ namespace scaffold::window
 				}
 
 				if (!closed)
-				{
-					for (auto callback : relevantWindow->windowCallbacks)
-					{
-						callback.first(e, callback.second);
-					}
-				}
+					relevantWindow->signalEvent.publish(e);
 			}
 			else
 			{
