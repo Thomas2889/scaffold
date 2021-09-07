@@ -5,13 +5,14 @@
 
 #include <Core/Window/WindowManager.h>
 #include <Core/Ecs/SystemProto.h>
+#include <Core/Exceptions/GenericExceptions.h>
 
 #include "Exceptions/RenderingExceptions.h"
 
 USING_LOGGER;
 
 
-namespace scaffold::renderer
+namespace scaffold::rendering
 {
 	namespace
 	{
@@ -138,7 +139,5 @@ namespace scaffold::renderer
 		window::GetInstance(window::mainWindow)->AddWindowCallback([](SDL_Event e, void* _data) {
 			glViewport(0, 0, window::GetInstance(window::mainWindow)->getWidth(), window::GetInstance(window::mainWindow)->getHeight());
 			});
-
-
 	}
 }

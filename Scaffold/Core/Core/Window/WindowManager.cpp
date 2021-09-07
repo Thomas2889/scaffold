@@ -93,7 +93,7 @@ namespace scaffold::window
 	
 	int FlushEvents()
 	{
-		std::lock_guard<std::mutex>lck(mut);
+		// std::lock_guard<std::mutex>lck(mut); // TODO: Not currently thread safe. Might have to restrict window modifications to the main thread?
 
 		SDL_PumpEvents();
 

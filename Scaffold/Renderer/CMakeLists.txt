@@ -4,6 +4,8 @@
  	Renderer
 	"Renderer/Renderer.cpp")
 
+set_target_properties(Core PROPERTIES PREFIX "scaffold-")
+
 	
 target_include_directories (Renderer PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 target_include_directories (Renderer PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Include")
@@ -16,6 +18,7 @@ target_link_libraries(Renderer
 	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
 	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/glew32.lib"
 	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/glew32s.lib"
+	PRIVATE "OpenGL32.lib"
 	)
 
 	

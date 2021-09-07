@@ -19,6 +19,8 @@ target_link_libraries(Scaffold
 	
 target_link_libraries (Scaffold PRIVATE Core)
 target_include_directories (Scaffold PRIVATE "${CMAKE_SOURCE_DIR}/Core")
+target_link_libraries (Scaffold PRIVATE Renderer)
+target_include_directories (Scaffold PRIVATE "${CMAKE_SOURCE_DIR}/Renderer")
 
 
 if(${CMAKE_OS_NAME} STREQUAL "Windows")

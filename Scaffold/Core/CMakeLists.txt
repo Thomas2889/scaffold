@@ -20,7 +20,7 @@
 	"Core/Utils/Math.cpp"
 	"Core/Debugging/CPUProfiler.cpp"
 	
-	"Core/Scaffold.cpp")
+	)
 
 set_target_properties(Core PROPERTIES PREFIX "scaffold-")
 
