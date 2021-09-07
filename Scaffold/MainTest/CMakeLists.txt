@@ -7,17 +7,9 @@ target_include_directories (MainTest PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/In
 target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/#in/Include")
 
 target_link_libraries(MainTest
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/CppLog.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2main.lib"
-	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
 	)
 
 	
-target_link_libraries (MainTest PRIVATE Core)
-target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Core")
-target_link_libraries (MainTest PRIVATE Renderer)
-target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Renderer")
 target_link_libraries (MainTest PRIVATE Scaffold)
 target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Scaffold/src")
 

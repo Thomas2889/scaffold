@@ -6,13 +6,11 @@
 #include <unordered_map>
 
 #include <SDL2/SDL.h>
+#include <entt.hpp>
 
 
 namespace scaffold::window
 {
-	typedef void(*Callback_Close)();
-	typedef void(*Callback_Event)(SDL_Event, void*);
-
 	class Window
 	{
 	private:
@@ -21,8 +19,9 @@ namespace scaffold::window
 		uint32_t width = 0;
 		uint32_t height = 0;
 		bool minimized = false;
-		Callback_Close closedCallback;
-		std::unordered_map<Callback_Event, void*> windowCallbacks;
+		entt::sigh<void(SDL_Event)> signalEvent;
+		entt::sigh<void()> signalClose;
+		entt::sigh<void(int32_t, int32_t)> signalResize;
 
 		std::mutex mut;
 
@@ -33,8 +32,7 @@ namespace scaffold::window
 			uint32_t _windowYPos = 0,
 			uint32_t _windowWidth = 0,
 			uint32_t _windowHeight = 0,
-			uint32_t _windowFlags = 0,
-			void(*_windowClosedCallback)() = {}
+			uint32_t _windowFlags = 0
 		);
 		~Window();
 
@@ -42,6 +40,10 @@ namespace scaffold::window
 		void SetWidthAndHeightInternal(uint32_t _width, uint32_t _height) { std::lock_guard<std::mutex>lck(mut); width = _width, height = _height; }
 
 	public:
+		entt::sink<void(SDL_Event)> onEvent;
+		entt::sink<void()> onClose;
+		entt::sink<void(int32_t, int32_t)> onResize;
+
 		SDL_Window* getWindow() { std::lock_guard<std::mutex>lck(mut); return sdlWindow; }
 		std::string getTitle() { std::lock_guard<std::mutex>lck(mut); return title; }
 		unsigned int getWidth() { std::lock_guard<std::mutex>lck(mut); return width; }
@@ -58,36 +60,6 @@ namespace scaffold::window
 		uint32_t GetID() { std::lock_guard<std::mutex>lck(mut); return SDL_GetWindowID(sdlWindow); }
 		bool IsMinimized() { std::lock_guard<std::mutex>lck(mut);  minimized; }
 
-		void AddWindowCallback(Callback_Event _callbk, void* _userData = nullptr, unsigned _userDataSize = 0)
-		{
-			if (_userData == nullptr)
-			{
-				windowCallbacks[_callbk] = nullptr;
-			}
-			else
-			{
-				char* newData = new char[_userDataSize];
-				char* oldData = (char*)_userData;
-
-				for (unsigned i = 0; i < _userDataSize; i++)
-				{
-					newData[i] = oldData[i];
-				}
-
-				windowCallbacks[_callbk] = newData;
-			}
-		}
-		void RemoveWindowCallback(Callback_Event _callbk)
-		{
-			if (windowCallbacks[_callbk] != nullptr)
-			{
-				char* userData = (char*)windowCallbacks[_callbk];
-				delete[] userData;
-			}
-
-			windowCallbacks.erase(_callbk);
-		}
-
 
 		friend uint32_t StartWindow(
 			std::string _windowTitle,
@@ -95,8 +67,7 @@ namespace scaffold::window
 			uint32_t _windowYPos,
 			uint32_t _windowWidth,
 			uint32_t _windowHeight,
-			uint32_t _windowFlags,
-			void(*_windowClosedCallback)()
+			uint32_t _windowFlags
 		);
 		friend void StopWindow(uint32_t _id);
 		friend int FlushEvents();

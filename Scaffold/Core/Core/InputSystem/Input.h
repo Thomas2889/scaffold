@@ -14,6 +14,10 @@ namespace scaffold::input
 		extern std::unordered_map<std::string, InputDevice*> devices;
 	}
 
+	extern InputDevice* keyboard;
+	extern InputDevice* mouse;
+
+
 	InputDevice* GetDevice(std::string name);
 	InputDevice* GetDevice(std::string name, unsigned index);
 	void RemoveDevice(std::string name);
