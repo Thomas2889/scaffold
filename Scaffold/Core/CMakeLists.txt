@@ -22,6 +22,8 @@
 	
 	"Core/Scaffold.cpp")
 
+set_target_properties(Core PROPERTIES PREFIX "scaffold-")
+
 	
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/Core")
 target_include_directories (Core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/#in/Include")
@@ -38,7 +40,7 @@ target_link_libraries(Core
 if(${CMAKE_OS_NAME} STREQUAL "Windows")
 	execute_process(COMMAND
 		cmd /c call "${CMAKE_CURRENT_SOURCE_DIR}/#buildsteps/CopyHeaders.bat"
-			"${CMAKE_CURRENT_SOURCE_DIR}/src"
+			"${CMAKE_CURRENT_SOURCE_DIR}/Core"
 			"${CMAKE_BINARY_DIR}/#Headers/Core"
 		WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 

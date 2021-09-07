@@ -13,9 +13,11 @@ target_link_libraries(MainTest
 	PRIVATE "${CMAKE_SOURCE_DIR}/#in/Lib/${CMAKE_OS_NAME}/${CMAKE_PLATFORM_NAME}-${CMAKE_BUILD_TYPE}/SDL2test.lib"
 	)
 
-
+	
 target_link_libraries (MainTest PRIVATE Core)
 target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Core")
+target_link_libraries (MainTest PRIVATE Scaffold)
+target_include_directories (MainTest PRIVATE "${CMAKE_SOURCE_DIR}/Scaffold/src")
 
 
 if(${CMAKE_OS_NAME} STREQUAL "Windows")

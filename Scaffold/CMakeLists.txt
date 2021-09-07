@@ -17,4 +17,5 @@ endif()
 
 
 add_subdirectory ("Core")
+add_subdirectory ("Scaffold")
 add_subdirectory ("MainTest")
