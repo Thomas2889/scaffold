@@ -136,8 +136,8 @@ namespace scaffold::rendering
 		glDebugMessageCallback(OpenGLDebugCallback, nullptr);
 
 		glViewport(0, 0, window::GetInstance(window::mainWindow)->getWidth(), window::GetInstance(window::mainWindow)->getHeight());
-		window::GetInstance(window::mainWindow)->AddWindowCallback([](SDL_Event e, void* _data) {
+		/*window::GetInstance(window::mainWindow)->AddWindowCallback([](SDL_Event e, void* _data) {
 			glViewport(0, 0, window::GetInstance(window::mainWindow)->getWidth(), window::GetInstance(window::mainWindow)->getHeight());
-			});
+			});*/
 	}
 }
